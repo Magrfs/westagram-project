@@ -3,7 +3,7 @@ import json
 from django.views import View
 from django.http import HttpResponse, JsonResponse
 
-import .models import Account
+from .models import Account
 
 
 class SignUpView(View):
@@ -28,11 +28,15 @@ class SignInView(View):
         signin_data = json.loads(request.body)
 
         try:
-            if Account.objects.filter(email=signin_data['email']).exist():
+            if Account.objects.filter(email=signin_data['email']).exists():
                 user = Account.objects.get(email=signin_data['email'])
 
                 if user.password == signin_data['password']:
                     return HttpResponse(status=200)
+
+                return HttpResponse(status=401)
+
+            return HttpResponse(status=400)
 
         except KeyError:
             return JsonResponse({"message": "INVALID_KEYS"}, status=400)
