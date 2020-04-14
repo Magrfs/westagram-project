@@ -1,5 +1,5 @@
 from django.db import models
-from account.models import Account
+from account.models import Account # 연결하려고 했었는데 복잡해서 실패!
 
 
 class Comment(models.Model):
