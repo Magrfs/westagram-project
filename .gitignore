@@ -7,7 +7,7 @@
 *.pot
 *.pyc
 __pycache__/
-westagram_project/settings.py
+local/settings.py
 db.sqlite3
 db.sqlite3-journal
 media
